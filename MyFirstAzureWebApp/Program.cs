@@ -6,8 +6,13 @@ using MyFirstAzureWebApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MyFirstAzureWebAppContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MyFirstAzureWebAppContext") ?? throw new InvalidOperationException("Connection string 'MyFirstAzureWebAppContext' not found.")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING"));
 
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+options.Configuration = builder.Configuration["AZURE_REDIS_CONNECTIONSTRING"];
+options.InstanceName = "SampleInstance";
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
