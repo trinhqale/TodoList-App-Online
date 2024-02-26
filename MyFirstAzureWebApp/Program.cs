@@ -6,7 +6,7 @@ using MyFirstAzureWebApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MyFirstAzureWebAppContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")));
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {
